@@ -51,6 +51,11 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           args: --features secp256k1 --all-targets
+      - name: Clippy RSA
+        uses: actions-rs/clippy-check@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          args: --features rsa --all-targets
       - name: Clippy dalek crypto
         uses: actions-rs/clippy-check@v1
         with:
@@ -67,6 +72,11 @@ jobs:
         with:
           command: test
           args: --features secp256k1
+      - name: Test RSA
+        uses: actions-rs/cargo@v1
+        with:
+          command: test
+          args: --no-default-features --features rsa --lib --tests
       - name: Test dalek crypto
         uses: actions-rs/cargo@v1
         with:

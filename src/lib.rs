@@ -28,11 +28,11 @@
 //! | `EdDSA` (Ed25519) | [`ed25519-dalek`] | Pure Rust implementation |
 //! | `EdDSA` (Ed25519) | [`ed25519-compact`] | Compact pure Rust implementation, WASM-compatible |
 //! | `ES256K` | [`secp256k1`] | Binding for [`libsecp256k1`] |
+//! | `RS*`, `PS*` (RSA) | [`rsa`] | Uses pure Rust [`rsa`] crate with blinding |
 //!
-//! Standard `RS*`, `PS*` and `ES*` algorithms are not (yet?) implemented. The reasons (besides
-//! laziness and non-friendly APIs in the relevant crypto backends) are as follows:
+//! Standard`ES*` algorithm is not (yet?) implemented. The main reason (besides
+//! laziness and non-friendly APIs in the relevant crypto backends) is:
 //!
-//! - RSA algorithms (i.e., `RS*` and `PS*`) are outdated / produce bloated signatures
 //! - Elliptic curves in `ES*` algs use a maybe-something-up-my-sleeve generation procedure
 //!   and thus may be backdoored
 //!

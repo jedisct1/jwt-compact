@@ -370,3 +370,51 @@ fn es256k_algorithm() {
     let es256k: Es256k<sha2::Sha256> = Es256k::new(context);
     test_algorithm(&es256k, &signing_key, &verifying_key);
 }
+
+#[cfg(feature = "rsa")]
+#[test]
+fn rs256_algorithm() {
+    let mut rng = thread_rng();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
+    test_algorithm(&Rs256, &signing_key, &verifying_key);
+}
+
+#[cfg(feature = "rsa")]
+#[test]
+fn rs384_algorithm() {
+    let mut rng = thread_rng();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
+    test_algorithm(&Rs384, &signing_key, &verifying_key);
+}
+
+#[cfg(feature = "rsa")]
+#[test]
+fn rs512_algorithm() {
+    let mut rng = thread_rng();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
+    test_algorithm(&Rs512, &signing_key, &verifying_key);
+}
+
+#[cfg(feature = "rsa")]
+#[test]
+fn ps256_algorithm() {
+    let mut rng = thread_rng();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
+    test_algorithm(&Ps256, &signing_key, &verifying_key);
+}
+
+#[cfg(feature = "rsa")]
+#[test]
+fn ps384_algorithm() {
+    let mut rng = thread_rng();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
+    test_algorithm(&Ps384, &signing_key, &verifying_key);
+}
+
+#[cfg(feature = "rsa")]
+#[test]
+fn ps512_algorithm() {
+    let mut rng = thread_rng();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
+    test_algorithm(&Ps512, &signing_key, &verifying_key);
+}
