@@ -10,6 +10,8 @@ mod eddsa_compact;
 mod eddsa_dalek;
 #[cfg(feature = "exonum-crypto")]
 mod eddsa_sodium;
+#[cfg(feature = "rsa")]
+mod rsa;
 
 #[cfg(feature = "ed25519-compact")]
 pub use self::eddsa_compact::*;
@@ -20,3 +22,5 @@ pub use self::eddsa_sodium::Ed25519;
 #[cfg(feature = "secp256k1")]
 pub use self::es256k::Es256k;
 pub use self::hmacs::*;
+#[cfg(feature = "rsa")]
+pub use self::rsa::{Ps256, Ps384, Ps512, Rs256, Rs384, Rs512};
