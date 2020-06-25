@@ -1,6 +1,6 @@
 [package]
 name = "jwt-compact-preview"
-version = "0.3.0"
+version = "0.3.1"
 authors = [
   "Alex Ostrovski <ostrovski.alex@gmail.com>",
   "Akhil Velagapudi <akhilvelagapudi@gmail.com>",
@@ -12,7 +12,7 @@ license = "Apache-2.0"
 keywords = ["JWT", "token", "authorization"]
 categories = ["web-programming", "cryptography"]
 description = "Minimalistic JWT implementation with focus on type safety and secure cryptographic primitives"
-repository = "https://github.com/slowli/jwt-compact"
+repository = "https://github.com/jedisct1/jwt-compact"
 
 # Enable `ES256K` algorithm in documentation on `docs.rs`.
 [package.metadata.docs.rs]

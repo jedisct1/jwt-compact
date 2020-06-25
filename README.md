@@ -1,15 +1,16 @@
 # Compact JWT implementation in Rust
 
-[![Travis Build Status](https://img.shields.io/travis/com/slowli/jwt-compact/master.svg?label=Linux%20Build)](https://travis-ci.com/slowli/jwt-compact)
-[![License: Apache-2.0](https://img.shields.io/github/license/slowli/jwt-compact.svg)](https://github.com/slowli/jwt-compact/blob/master/LICENSE)
-![rust 1.45.0+ required](https://img.shields.io/badge/rust-1.45.0+-blue.svg?label=Required%20Rust)
-[![Dependencies status](https://img.shields.io/librariesio/github/slowli/jwt-compact)](https://libraries.io/github/slowli/jwt-compact)
-
-**Documentation:** [![Docs.rs](https://docs.rs/jwt-compact/badge.svg)](https://docs.rs/jwt-compact/)
-[![crate docs (master)](https://img.shields.io/badge/master-yellow.svg?label=docs)](https://slowli.github.io/jwt-compact/jwt_compact/)
+[![Docs.rs](https://docs.rs/jwt-compact-preview/badge.svg)](https://docs.rs/jwt-compact-preview/)
 
 Minimalistic [JSON web token (JWT)][JWT] implementation with focus on type safety
 and secure cryptographic primitives.
+
+This is a fork of [`jwt-compact`](https://docs.rs/jwt-compact/) with several additions:
+
+- RSA support (`RS256`, `RS384`, `RS512`, `PS256`, `PS384`, `PS512`)
+- `ed25519-compact` backend for Ed25519 signatures
+- Backend-agnostic helpers to import and generate RSA and ECDSA keys
+- Can be compiled to WebAssembly; compatible with Fastly Compute@Edge.
 
 ## Usage
 
