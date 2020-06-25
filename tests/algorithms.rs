@@ -1,7 +1,7 @@
 use assert_matches::assert_matches;
 use chrono::{Duration, Utc};
 use hex_buffer_serde::{Hex as _, HexForm};
-use jwt_compact::{alg::*, prelude::*, Algorithm, ValidationError};
+use jwt_compact_preview::{alg::*, prelude::*, Algorithm, ValidationError};
 use rand::thread_rng;
 use serde::{Deserialize, Serialize};
 use serde_json::json;
