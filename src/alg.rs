@@ -20,7 +20,7 @@ pub use self::eddsa_dalek::Ed25519;
 #[cfg(feature = "exonum-crypto")]
 pub use self::eddsa_sodium::Ed25519;
 #[cfg(feature = "secp256k1")]
-pub use self::es256k::Es256k;
+pub use self::es256k::*;
 pub use self::hmacs::*;
 #[cfg(feature = "rsa")]
 pub use self::rsa::{
