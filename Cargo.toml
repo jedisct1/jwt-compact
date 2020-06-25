@@ -61,4 +61,4 @@ hex = "0.4.2"
 hex-buffer-serde = "0.2.0"
 
 [features]
-default = ["exonum-crypto"]
+default = ["ed25519-compact", "rsa"]
