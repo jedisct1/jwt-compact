@@ -374,65 +374,47 @@ fn es256k_algorithm() {
 #[cfg(feature = "rsa")]
 #[test]
 fn rs256_algorithm() {
-    use rsa::RSAPrivateKey;
-
     let mut rng = thread_rng();
-    let signing_key = RSAPrivateKey::new(&mut rng, 2048).unwrap();
-    let verifying_key = signing_key.to_public_key();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
     test_algorithm(&Rs256, &signing_key, &verifying_key);
 }
 
 #[cfg(feature = "rsa")]
 #[test]
 fn rs384_algorithm() {
-    use rsa::RSAPrivateKey;
-
     let mut rng = thread_rng();
-    let signing_key = RSAPrivateKey::new(&mut rng, 3072).unwrap();
-    let verifying_key = signing_key.to_public_key();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
     test_algorithm(&Rs384, &signing_key, &verifying_key);
 }
 
 #[cfg(feature = "rsa")]
 #[test]
 fn rs512_algorithm() {
-    use rsa::RSAPrivateKey;
-
     let mut rng = thread_rng();
-    let signing_key = RSAPrivateKey::new(&mut rng, 4096).unwrap();
-    let verifying_key = signing_key.to_public_key();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
     test_algorithm(&Rs512, &signing_key, &verifying_key);
 }
 
 #[cfg(feature = "rsa")]
 #[test]
 fn ps256_algorithm() {
-    use rsa::RSAPrivateKey;
-
     let mut rng = thread_rng();
-    let signing_key = RSAPrivateKey::new(&mut rng, 2048).unwrap();
-    let verifying_key = signing_key.to_public_key();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
     test_algorithm(&Ps256, &signing_key, &verifying_key);
 }
 
 #[cfg(feature = "rsa")]
 #[test]
 fn ps384_algorithm() {
-    use rsa::RSAPrivateKey;
-
     let mut rng = thread_rng();
-    let signing_key = RSAPrivateKey::new(&mut rng, 3072).unwrap();
-    let verifying_key = signing_key.to_public_key();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
     test_algorithm(&Ps384, &signing_key, &verifying_key);
 }
 
 #[cfg(feature = "rsa")]
 #[test]
 fn ps512_algorithm() {
-    use rsa::RSAPrivateKey;
-
     let mut rng = thread_rng();
-    let signing_key = RSAPrivateKey::new(&mut rng, 4096).unwrap();
-    let verifying_key = signing_key.to_public_key();
+    let (signing_key, verifying_key) = Rsa::generate(&mut rng, 2048).unwrap();
     test_algorithm(&Ps512, &signing_key, &verifying_key);
 }

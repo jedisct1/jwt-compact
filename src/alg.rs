@@ -23,4 +23,6 @@ pub use self::eddsa_sodium::Ed25519;
 pub use self::es256k::Es256k;
 pub use self::hmacs::*;
 #[cfg(feature = "rsa")]
-pub use self::rsa::{Ps256, Ps384, Ps512, Rs256, Rs384, Rs512};
+pub use self::rsa::{
+    Padding, Ps256, Ps384, Ps512, Rs256, Rs384, Rs512, Rsa, RsaSigningKey, RsaVerifyingKey,
+};
