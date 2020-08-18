@@ -16,30 +16,26 @@
 //!
 //! - The crate supports more compact [CBOR] encoding of the claims. The compactly encoded JWTs
 //!   have [`cty` field] (content type) in their header set to `"CBOR"`.
-//! - The crate supports `EdDSA` algorithm with the Ed25519 elliptic curve, and `ES256K` algorithm
-//!   with the secp256k1 elliptic curve.
+//! - The crate supports `EdDSA` algorithm with the Ed25519 elliptic curve `ES256K` algorithm
+//!   with the secp256k1 elliptic curve, `ES256` (`p256`) and all `RS*` variants (`RSA`).
 //!
 //! ## Supported algorithms
 //!
 //! | Algorithm(s) | Feature | Description |
 //! |--------------|---------|-------------|
 //! | `HS256`, `HS384`, `HS512` | - | Uses pure Rust [`sha2`] crate |
-//! | `EdDSA` (Ed25519) | [`exonum-crypto`] | [`libsodium`] binding. Enabled by default |
-//! | `EdDSA` (Ed25519) | [`ed25519-dalek`] | Pure Rust implementation |
+//! | `EdDSA` (Ed25519) | [`exonum-crypto`] | [`libsodium`] binding, not WASM-compatible |
+//! | `EdDSA` (Ed25519) | [`ed25519-dalek`] | Pure Rust implementation, not WASM-compatible |
 //! | `EdDSA` (Ed25519) | [`ed25519-compact`] | Compact pure Rust implementation, WASM-compatible |
-//! | `ES256K` | [`secp256k1`] | Binding for [`libsecp256k1`] |
+//! | `ES256K` | [`secp256k1`] | Binding for [`libsecp256k1`], not WASM-compatible |
+//! | `ES256K` | [`k256`] | Pure Rust implementation, WASM-compatible |
+//! | `ES256` | [`p256`] | Pure Rust implementation, WASM-compatible |
 //! | `RS*`, `PS*` (RSA) | [`rsa`] | Uses pure Rust [`rsa`] crate with blinding |
 //!
-//! Standard`ES*` algorithm is not (yet?) implemented. The main reason (besides
-//! laziness and non-friendly APIs in the relevant crypto backends) is:
-//!
-//! - Elliptic curves in `ES*` algs use a maybe-something-up-my-sleeve generation procedure
-//!   and thus may be backdoored
-//!
-//! `EdDSA` and `ES256K` algorithms are non-standard. They both work with elliptic curves
-//! (Curve25519 and secp256k1; both are widely used in crypto community and believed to be
-//! securely generated). These algs have 128-bit security, making them an alternative
-//! to `ES256`.
+//! `EdDSA` and `ES256K` algorithms are non-standard but commonly implemented.
+//! They both work with elliptic curves (Curve25519 and secp256k1;
+//! Both are widely used in crypto community and believed to be securely generated).
+//! Whenever it is an option, `EdDSA` (`Ed25519`) is the recommended choice.
 //!
 //! [JWT]: https://jwt.io/
 //! [switching]: https://auth0.com/blog/critical-vulnerabilities-in-json-web-token-libraries/
@@ -63,7 +59,7 @@
 //!
 //! ```
 //! use chrono::{Duration, Utc};
-//! use jwt_compact::{prelude::*, alg::{Hs256, Hs256Key}};
+//! use jwt_compact_preview::{prelude::*, alg::{Hs256, Hs256Key}};
 //! use serde::{Serialize, Deserialize};
 //! use std::convert::TryFrom;
 //!
@@ -114,7 +110,7 @@
 //! ```
 //! # use chrono::Duration;
 //! # use hex_buffer_serde::{Hex as _, HexForm};
-//! # use jwt_compact::{prelude::*, alg::{Hs256, Hs256Key}};
+//! # use jwt_compact_preview::{prelude::*, alg::{Hs256, Hs256Key}};
 //! # use serde::{Serialize, Deserialize};
 //! # use std::convert::TryFrom;
 //! /// Custom claims encoded in the token.
@@ -215,7 +211,7 @@ pub trait Algorithm {
 /// # Examples
 ///
 /// ```
-/// use jwt_compact::{alg::{Hs256, Hs256Key}, prelude::*, Empty, Renamed};
+/// use jwt_compact_preview::{alg::{Hs256, Hs256Key}, prelude::*, Empty, Renamed};
 /// # use std::convert::TryFrom;
 ///
 /// let alg = Renamed::new(Hs256, "HS2");
@@ -521,7 +517,7 @@ impl<T> Token<T> {
 /// # Examples
 ///
 /// ```
-/// # use jwt_compact::{alg::{Hs256, Hs256Key}, prelude::*};
+/// # use jwt_compact_preview::{alg::{Hs256, Hs256Key}, prelude::*};
 /// # use chrono::Duration;
 /// # use hmac::crypto_mac::generic_array::{typenum, GenericArray};
 /// # use serde::{Deserialize, Serialize};
