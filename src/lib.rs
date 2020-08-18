@@ -28,6 +28,7 @@
 //! | `EdDSA` (Ed25519) | [`ed25519-dalek`] | Pure Rust implementation |
 //! | `EdDSA` (Ed25519) | [`ed25519-compact`] | Compact pure Rust implementation, WASM-compatible |
 //! | `ES256K` | [`secp256k1`] | Binding for [`libsecp256k1`] |
+//! | `ES256` | [`p256`] | Pure Rust implementation |
 //! | `RS*`, `PS*` (RSA) | [`rsa`] | Uses pure Rust [`rsa`] crate with blinding |
 //!
 //! Standard`ES*` algorithm is not (yet?) implemented. The main reason (besides

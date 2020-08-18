@@ -61,6 +61,10 @@ pub enum ValidationError {
     /// Token is not yet valid as per `nbf` claim.
     #[error("Token is not yet ready")]
     NotMature,
+
+    /// Invalid public key
+    #[error("Invalid public key")]
+    InvalidPublicKey,
 }
 
 /// Errors that can occur during token creation.

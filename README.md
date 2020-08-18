@@ -9,6 +9,7 @@ This is a fork of [`jwt-compact`](https://docs.rs/jwt-compact/) with several add
 
 - RSA support (`RS256`, `RS384`, `RS512`, `PS256`, `PS384`, `PS512`)
 - `ed25519-compact` backend for Ed25519 signatures
+- p256 (`ES256`) support (WIP)
 - Backend-agnostic helpers to import and generate RSA and ECDSA keys
 - Can be compiled to WebAssembly; compatible with Fastly Compute@Edge.
 
@@ -30,7 +31,6 @@ See the crate docs for the examples of usage.
 
 ### Missing features
 
-- Support of standard elliptic curve (`ES*`) algorithms.
 - Built-in checks of some claims (e.g., `iss` – the token issuer).
   This is intentional: depending on the use case, such claims can have different semantics
   and thus be represented by different datatypes (e.g., `iss` may be a human-readable short ID,
