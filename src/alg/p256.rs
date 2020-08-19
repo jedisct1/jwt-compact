@@ -6,27 +6,18 @@ use p256::{
 use rand_core::{CryptoRng, RngCore};
 
 use std::borrow::Cow;
+use std::convert::TryFrom;
 
 use crate::error::ValidationError;
 use crate::{Algorithm, AlgorithmSignature};
 
 impl AlgorithmSignature for Signature {
     fn try_from_slice(slice: &[u8]) -> anyhow::Result<Self> {
-        if slice.len() != 64 {
-            return Err(anyhow::anyhow!("Invalid signature encoding"));
-        }
-        let r = &slice[..32];
-        let s = &slice[32..];
-        Ok(Signature::from_scalars(r.into(), s.into()))
+        Signature::try_from(slice).map_err(|e| anyhow::anyhow!(e))
     }
 
     fn as_bytes(&self) -> Cow<[u8]> {
-        let r = self.r().as_slice();
-        let s = self.s().as_slice();
-        let mut v: Vec<u8> = Vec::with_capacity(r.len() + s.len());
-        v.extend_from_slice(r);
-        v.extend_from_slice(s);
-        Cow::Owned(v)
+        Cow::Owned(self.as_ref().to_vec())
     }
 }
 
