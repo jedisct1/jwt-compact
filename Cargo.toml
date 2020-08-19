@@ -1,6 +1,6 @@
 [package]
 name = "jwt-compact-preview"
-version = "0.3.6"
+version = "0.3.7"
 authors = [
   "Alex Ostrovski <ostrovski.alex@gmail.com>",
   "Akhil Velagapudi <akhilvelagapudi@gmail.com>",
@@ -20,8 +20,8 @@ features = ["secp256k1"]
 
 [dependencies]
 # Public dependencies (present in the public API).
-anyhow = "1.0.28"
-base64 = "0.12.1"
+anyhow = "1.0.32"
+base64 = "0.12.3"
 rand = "0.7.3"
 rand_core = "0.5.1"
 serde = { version = "1.0", features = ["derive"] }
@@ -29,9 +29,9 @@ serde_cbor = "0.11.1"
 serde_json = "1.0"
 
 # Crypto backends (all public dependencies).
-hmac = "0.8.0"
-sha2 = "0.9.0"
-ed25519-dalek = { version = "1.0.0-pre.3", optional = true }
+hmac = "0.9.0"
+sha2 = "0.9.1"
+ed25519-dalek = { version = "1.0.0-pre", optional = true }
 secp256k1 = { version = "0.17.2", features = ["rand"], optional = true }
 
 # Private dependencies (not exposed in the public API).
