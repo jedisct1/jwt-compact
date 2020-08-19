@@ -85,9 +85,18 @@ impl Es256SigningKey {
 ///
 /// *This type is available if the crate is built with the `p256` feature.*
 #[derive(Debug)]
-pub struct Es256;
+pub struct Es256<R: CryptoRng + RngCore> {
+    rng: R,
+}
 
-impl Algorithm for Es256 {
+impl<R: CryptoRng + RngCore> Es256<R> {
+    /// Create an Es256 structure that uses the provided RNG
+    pub fn new(rng: R) -> Self {
+        Es256 { rng }
+    }
+}
+
+impl<R: CryptoRng + RngCore> Algorithm for Es256<R> {
     type SigningKey = Es256SigningKey;
     type VerifyingKey = Es256VerifyingKey;
     type Signature = Signature;
@@ -115,10 +124,10 @@ impl Algorithm for Es256 {
     }
 }
 
-impl Es256 {
+impl<R: CryptoRng + RngCore> Es256<R> {
     /// Generate a new key pair.
-    pub fn generate<R: CryptoRng + RngCore>(rng: &mut R) -> (Es256SigningKey, Es256VerifyingKey) {
-        let signing_key = Es256SigningKey(SecretKey::generate(rng));
+    pub fn generate(&mut self) -> (Es256SigningKey, Es256VerifyingKey) {
+        let signing_key = Es256SigningKey(SecretKey::generate(&mut self.rng));
         let verifying_key =
             Es256VerifyingKey(PublicKey::from_secret_key(signing_key.as_ref(), true).unwrap());
         (signing_key, verifying_key)

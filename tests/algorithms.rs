@@ -362,9 +362,10 @@ fn es256k_algorithm() {
 #[cfg(feature = "p256")]
 #[test]
 fn es256_algorithm() {
-    let mut rng = thread_rng();
-    let (signing_key, verifying_key) = Es256::generate(&mut rng);
-    test_algorithm(&Es256, &signing_key, &verifying_key);
+    let rng = thread_rng();
+    let mut es256: Es256<_> = Es256::new(rng);
+    let (signing_key, verifying_key) = es256.generate();
+    test_algorithm(&es256, &signing_key, &verifying_key);
 }
 
 #[cfg(feature = "rsa")]
