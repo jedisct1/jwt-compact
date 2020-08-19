@@ -9,7 +9,8 @@ This is a fork of [`jwt-compact`](https://docs.rs/jwt-compact/) with several add
 
 - RSA support (`RS256`, `RS384`, `RS512`, `PS256`, `PS384`, `PS512`)
 - `ed25519-compact` backend for Ed25519 signatures
-- p256 (`ES256`) support (WIP)
+- Standard p256 (`ES256`) support
+- Pure Rust `secp256k1` (`ES256k`) support
 - Backend-agnostic helpers to import and generate RSA and ECDSA keys
 - Can be compiled to WebAssembly; compatible with Fastly Compute@Edge.
 
