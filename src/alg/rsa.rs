@@ -137,7 +137,7 @@ impl<T: RsaVariant> Algorithm for T {
     type Signature = Signature;
 
     fn name(&self) -> Cow<'static, str> {
-        Self::rsa().name()
+        Cow::Borrowed(Self::rsa().name())
     }
 
     fn sign(&self, signing_key: &Self::SigningKey, message: &[u8]) -> Self::Signature {
@@ -179,14 +179,16 @@ impl Rsa {
         }
     }
 
-    fn name(&self) -> Cow<'static, str> {
-        let name = match self.hash_alg {
-            Hash::SHA2_256 => "RS256",
-            Hash::SHA2_384 => "RS384",
-            Hash::SHA2_512 => "RS512",
+    fn name(&self) -> &'static str {
+        match (self.padding_alg, self.hash_alg) {
+            (Padding::Pkcs1v15, Hash::SHA2_256) => "RS256",
+            (Padding::Pkcs1v15, Hash::SHA2_384) => "RS384",
+            (Padding::Pkcs1v15, Hash::SHA2_512) => "RS512",
+            (Padding::Pss, Hash::SHA2_256) => "PS256",
+            (Padding::Pss, Hash::SHA2_384) => "PS384",
+            (Padding::Pss, Hash::SHA2_512) => "PS512",
             _ => unreachable!(),
-        };
-        Cow::Borrowed(name)
+        }
     }
 
     fn sign(&self, signing_key: &RsaSigningKey, message: &[u8]) -> Signature {
