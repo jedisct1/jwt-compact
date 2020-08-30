@@ -2,7 +2,7 @@
 
 [![Docs.rs](https://docs.rs/jwt-compact-preview/badge.svg)](https://docs.rs/jwt-compact-preview/)
 
-# DEPRECATED - This crate has been replaced by [`jwt-simple`](https://github.com/jedisct1/rust-jwt-simple)
+# DEPRECATED - This crate has been replaced by [`jwt-simple`](https://crates.io/crates/jwt-simple)
 
 Minimalistic JWT implementation with focus on type safety and secure cryptographic primitives.
 
