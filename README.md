@@ -4,8 +4,7 @@
 
 # DEPRECATED - This crate has been replaced by [`jwt-simple`](https://github.com/jedisct1/rust-jwt-simple)
 
-Minimalistic [JSON web token (JWT)][JWT] implementation with focus on type safety
-and secure cryptographic primitives.
+Minimalistic JWT implementation with focus on type safety and secure cryptographic primitives.
 
 This is a fork of [`jwt-compact`](https://docs.rs/jwt-compact/) with several additions:
 
